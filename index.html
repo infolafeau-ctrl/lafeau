@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lafeau - Luxe Sieraden & Horloges</title>
+    <link rel="stylesheet" href="stylee.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Premium Header -->
+    <header class="premium-header">
+        <div class="header-top">
+            <div class="container">
+                <div class="header-info">
+                    <span>✨ Gratis verzending boven €100</span>
+                    <span>💎 Authentieke certificering</span>
+                    <span>🔒 Veilig betalen</span>
+                </div>
+            </div>
+        </div>
+        
+        <nav class="main-nav">
+            <div class="container">
+                <div class="nav-brand">
+                    <h1 class="logo">Lafeau</h1>
+                    <span class="tagline">Luxury Redefined</span>
+                </div>
+                
+                <div class="nav-center">
+                    <a href="#home" class="nav-link">Home</a>
+                    <a href="#collection" class="nav-link">Collectie</a>
+                    <a href="#about" class="nav-link">Over Lafeau</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+                
+                <div class="nav-actions">
+                    <button class="search-btn" onclick="toggleSearch()">🔍</button>
+                    <div class="user-actions">
+                        <button class="account-btn" onclick="toggleAccount()">👤</button>
+                        <a href="login.html" class="admin-btn" title="Beheerpaneel">⚙️</a>
+                        <div class="cart-icon" onclick="toggleCart()">
+                            <span class="cart-badge" id="cart-count">0</span>
+                            🛒
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Features Bar -->
+    <section class="features-bar">
+        <div class="container">
+            <div class="feature-item">
+                <div class="feature-icon">🚚</div>
+                <h4>Gratis Verzending</h4>
+                <p>Bij bestellingen boven €100</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🔒</div>
+                <h4>Veilig Betalen</h4>
+                <p>iDEAL, Creditcard & PayPal</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">💎</div>
+                <h4>Authentiek</h4>
+                <p>Gecertificeerde materialen</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">↩️</div>
+                <h4>30 Dagen Retour</h4>
+                <p>Gratis retourneren</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Collectie -->
+    <section id="collection" class="collection-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Onze Exclusieve Collectie</h2>
+                <p>Ontdek zorgvuldig geselecteerde stukken van uitzonderlijke kwaliteit</p>
+            </div>
+
+            <!-- Filters -->
+            <div class="collection-filters">
+                <div class="filter-group">
+                    <button class="filter-btn active" data-category="all">Alles</button>
+                    <button class="filter-btn" data-category="rings">Ringen</button>
+                    <button class="filter-btn" data-category="necklaces">Kettingen</button>
+                    <button class="filter-btn" data-category="earrings">Oorbellen</button>
+                    <button class="filter-btn" data-category="bracelets">Armbanden</button>
+                    <button class="filter-btn" data-category="watches">Horloges</button>
+                </div>
+                <div class="sort-group">
+                    <select id="sort-select" onchange="sortProducts()">
+                        <option value="newest">Nieuwste</option>
+                        <option value="price-low">Prijs: Laag-Hoog</option>
+                        <option value="price-high">Prijs: Hoog-Laag</option>
+                        <option value="name">Naam A-Z</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="products-grid" id="products-grid">
+                <!-- Producten worden hier geladen via JavaScript -->
+            </div>
+
+            <!-- Lege staat -->
+            <div id="empty-state" class="empty-state">
+                <div class="empty-icon">💎</div>
+                <h3>Nog geen producten beschikbaar</h3>
+                <p>Voeg je eerste luxe producten toe via het beheerpaneel</p>
+                <a href="login.html" class="btn-primary">Beheerpaneel Openen</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Winkelwagen Modal -->
+    <div id="cart-modal" class="cart-modal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2>Jouw Winkelwagen</h2>
+                <span class="close-btn" onclick="toggleCart()">&times;</span>
+            </div>
+            <div class="cart-body">
+                <div id="cart-items">
+                    <div class="empty-cart">
+                        <p>Je winkelwagen is leeg</p>
+                        <button class="btn-primary" onclick="scrollToCollection()">Verder Winkelen</button>
+                    </div>
+                </div>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-summary">
+                    <div class="cart-total">
+                        <span>Totaal:</span>
+                        <span id="cart-total">€0,00</span>
+                    </div>
+                    <div class="cart-shipping">
+                        <span>Verzending:</span>
+                        <span id="shipping-cost">Gratis</span>
+                    </div>
+                    <div class="cart-grand-total">
+                        <span>Totaal bedrag:</span>
+                        <span id="grand-total">€0,00</span>
+                    </div>
+                </div>
+                <button class="checkout-btn" onclick="proceedToCheckout()">Verder naar Betaling</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="luxury-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Lafeau</h3>
+                    <p>Timeless elegance and exceptional craftsmanship since 2025.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Shop</h4>
+                    <a href="#collection">Alle Producten</a>
+                    <a href="#new-arrivals">Nieuwe Arrivages</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Service</h4>
+                    <a href="#">Verzending & Levering</a>
+                    <a href="#">Retourneren</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Bedrijf</h4>
+                    <a href="login.html">Beheerpaneel</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript links -->
+    <script src="js/main.js"></script>
+    <script src="js/payment.js"></script>
+</body>
+</html>
